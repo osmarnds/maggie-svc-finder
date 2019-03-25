@@ -1,0 +1,13 @@
+alembic==1.0.0
+coverage==4.5.1
+cryptography==2.2.2
+cx-Oracle==6.1
+flask==1.0.2
+gunicorn==19.9.0
+pyjwt==1.6.4
+pika==0.11.2
+redis==2.10.6
+requests==2.19.1
+selenium==3.141.0
+sqlalchemy==1.2.17
+marshmallow-sqlalchemy==0.15.0
