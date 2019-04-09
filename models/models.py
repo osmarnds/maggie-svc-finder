@@ -1,7 +1,7 @@
 ''' Module for Services models and schemas '''
 from sqlalchemy import (
     Column, String, Integer, DateTime, func, Sequence)
-from app.database import Base
+from labio.database import Base
 
 
 class Services_Final(Base):
