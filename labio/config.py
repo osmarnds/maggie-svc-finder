@@ -5,13 +5,14 @@ import json
 import os
 import sys
 import requests
-from app.logging import pcf_logger
-from app.utils import decode
+from labio.logging import pcf_logger
+from labio.utils import decode
 
 class AppConfig():
     '''Loads configuration from PCF, or from app.dev.config when running outside PCF'''
 
-    DB_SERVER = 'sqlite:///localdb.db'
+    #DB_SERVER = 'sqlite:///localdb.db'
+    DB_SERVER = 'mysql+mysqlconnector://wpcortes:adm123@localhost/brasileirao'
 
     JWT_KEY = None
     OAUTH_DOMAIN = None

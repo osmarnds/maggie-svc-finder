@@ -1,18 +1,17 @@
 '''Creates a custom logger to use with Flask'''
 from sys import stdout
 from logging import Formatter, getLogger, StreamHandler, DEBUG, INFO, WARNING
-from flask import request
 
 class PCFFormatter(Formatter):
     ''' Custom formatter to inject request information into  the log '''
     def format(self, record):
-        if request:
+        try:
             record.url = '[{}] '.format(request.url)
             record.remote_addr = '[{}] '.format(request.remote_addr)
             record.username = '[{}] '.format(request.environ.get('username'))
             record.method = '[{}] '.format(request.method)
             record.data = '[{}] '.format(request.data)
-        else:
+        except:
             record.url = ''
             record.remote_addr = ''
             record.username = ''

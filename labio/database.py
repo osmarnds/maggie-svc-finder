@@ -4,8 +4,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import as_declarative
-from app.config import config
-from app.serializer import setup_serializer
+from labio.config import config
+from labio.serializer import setup_serializer
 
 def init():
     ''' Runs all necessary database setup operations '''
@@ -26,7 +26,11 @@ def _connect():
 
 def get_metadata():
     '''Import all modules that define models here!
-      Otherwise alembic won't be able to detect database changes automatically'''
+      Otherwise alembic won't be able to detect database changes automatically'''  
+    from models.match import Match
+    from models.team import Team
+    from models.season import Season
+    from models.stadium import Stadium
     return Base.metadata
 
 def _upgrade_db():
