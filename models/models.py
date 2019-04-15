@@ -10,7 +10,7 @@ class Services_Final(Base):
     __tablename__ = 'services_final'
 
     svc_id = Column(Integer(), Sequence('service_id_sequence'), primary_key=True)
-    svc_name = Column(String(400), nullable=False, index=True, unique=True)
+    svc_name = Column(String(400), nullable=False, index=True)
     svc_entrypoint = Column(String(400), nullable=False, unique=True)
     svc_description = Column(String(4000), nullable=True)
     svc_endpoints = Column(Integer(), nullable=False, index=True)
@@ -25,10 +25,10 @@ class Services_Temp(Base):
 
     __tablename__ = 'services_temp'
 
-    svc_name = Column(String(400), nullable=False, index=True, unique=True, primary_key=True)
-    svc_entrypoint = Column(String(400), nullable=False, unique=True)
-    svc_description = Column(String(4000), nullable=True)
-    svc_endpoints = Column(Integer(), nullable=False, index=True)
+    tsvc_name = Column(String(400), nullable=False, index=True)
+    tsvc_entrypoint = Column(String(400), nullable=False, primary_key=True)
+    tsvc_description = Column(String(4000), nullable=True)
+    tsvc_endpoints = Column(Integer(), nullable=False, index=True)
 
     def __repr__(self):
         return '<Service_temp %r>' % (self.svc_name)
@@ -41,7 +41,7 @@ class Endpoints_Final(Base):
 
     end_id = Column(Integer(), Sequence('service_id_sequence'), primary_key=True)
     svc_id = Column(Integer(), unique=True)
-    end_name = Column(String(400), nullable=False, index=True, unique=True)
+    end_name = Column(String(400), nullable=False, index=True)
     end_url = Column(String(400), nullable=False, unique=True)
     end_description = Column(String(4000), nullable=True)
 
@@ -54,10 +54,10 @@ class Endpoints_Temp(Base):
 
     __tablename__ = 'endpoints_temp'
 
-    svc_name = Column(String(400), nullable=False, index=True, unique=True)
-    end_name = Column(String(400), nullable=False, index=True, unique=True, primary_key=True)
-    end_url = Column(String(400), nullable=False, unique=True)
-    end_description = Column(String(4000), nullable=True)
+    tsvc_name = Column(String(400), nullable=False, index=True)
+    tend_name = Column(String(400), nullable=True, index=True)
+    tend_url = Column(String(400), nullable=False, primary_key=True)
+    tend_description = Column(String(4000), nullable=True)
 
     def __repr__(self):
         return '<Endpoint_temp %r>' % (self.end_name)

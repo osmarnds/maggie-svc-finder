@@ -13,7 +13,7 @@ with open('services-list.json', 'w') as json_file:
         response = requests.get('https://www.biocatalogue.org/services.json?page='+str(x))
         services = response.json()
         if response.status_code != 200:
-            print("Erro na requisição")
+            print("Erro na requisição! Página",x)
         results = services['services']['results']
         for service in results:
             details = {
