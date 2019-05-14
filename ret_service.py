@@ -1,5 +1,6 @@
 from models.models import Services_Temp
-import requests, json, labio
+import requests, json, labio, re
+from bs4 import BeautifulSoup
 
 labio.db.init()
 
@@ -25,9 +26,39 @@ for x in range(1, pages):
         # atribui os campos e adiciona
         svc_record.tsvc_name = service['name']
         svc_record.tsvc_description = service['description']
+        if svc_record.tsvc_description == None or svc_record.tsvc_description == '':
+            svc_record.tsvc_description = 'No Description'
         svc_record.tsvc_endpoints = 0
         svc_record.tsvc_entrypoint = service['resource']
-        svc_record.add()
-        
+        svc_record.add()       
 svc_record.session.commit()
+'''
+# Pega o número de endpoints de cada serviço e adiciona na temporária de serviços
+svcs_list = Services_Temp.query.all()
+for svc in svcs_list:
+    resp = requests.get(svc.tsvc_entrypoint) 
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    id = svc.tsvc_entrypoint
+    id = re.sub('[^0-9]', '', id)
+    num_end = soup.find(href="/services/"+id+"/service_endpoint")
+    for num in num_end:
+        num = re.sub('[^0-9]', '', num)
+        svc.tsvc_endpoints = num
+Services_Temp.session.commit()
+'''
 
+'''''''''''''''''''''''''''''
+# tentei com .json mas não sei como lidar com {}0 (json viewer)
+svcs_list = Services_Temp.query.all()
+for svc in svcs_list:
+    id = svc.tsvc_entrypoint
+    id = re.sub('[^0-9]', '', id)
+    resp = requests.get('https://www.biocatalogue.org/services/'+id+'.json') 
+    end = resp.json()
+    res = end['service']['variants'][0]['resource']
+    count_end = 0
+    for endpoint in res:
+        count_end += 1
+    Services_Temp.tsvc_endpoints = count_end
+Services_Temp.session.commit()
+'''''''''''''''''''''''''''''''''''''''''

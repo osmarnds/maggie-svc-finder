@@ -2,9 +2,7 @@ import labio
 
 labio.db.init()
 
-
 from models.models import Services_Temp
-
 
 svc_record = Services_Temp()
 
@@ -23,8 +21,7 @@ svc_record.svc_entrypoint = 'https://test4'
 # sempre que modificar a tabela, precisa dar commit (adicionar ou deletar) #
 #svc_record.session.commit()
 
-
-svcs = Services_Temp.query.filter(Services_Temp.svc_name == 'Test4').all()
+svcs = Services_Temp.query.filter(Services_Temp.tsvc_name == 'Test4').all()
 #svcs = Services_Temp.query.filter(Services_Temp.tsvc_entrypoint != 'a').all()
 
 for item in svcs:

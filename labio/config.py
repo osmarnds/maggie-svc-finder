@@ -11,8 +11,8 @@ from labio.utils import decode
 class AppConfig():
     '''Loads configuration from PCF, or from app.dev.config when running outside PCF'''
 
-    DB_SERVER = 'sqlite:///localdb.db'
-    #DB_SERVER = 'mysql+mysqlconnector://wpcortes:adm123@localhost/brasileirao'
+    #DB_SERVER = 'sqlite:///localdb.db'
+    DB_SERVER = 'mysql+mysqlconnector://root:root@localhost/localdb'  
 
     JWT_KEY = None
     OAUTH_DOMAIN = None
