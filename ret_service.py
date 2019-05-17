@@ -32,7 +32,8 @@ for x in range(1, pages):
         svc_record.tsvc_entrypoint = service['resource']
         svc_record.add()       
 svc_record.session.commit()
-'''
+
+''' Execução demora!
 # Pega o número de endpoints de cada serviço e adiciona na temporária de serviços
 svcs_list = Services_Temp.query.all()
 for svc in svcs_list:
@@ -46,19 +47,3 @@ for svc in svcs_list:
         svc.tsvc_endpoints = num
 Services_Temp.session.commit()
 '''
-
-'''''''''''''''''''''''''''''
-# tentei com .json mas não sei como lidar com {}0 (json viewer)
-svcs_list = Services_Temp.query.all()
-for svc in svcs_list:
-    id = svc.tsvc_entrypoint
-    id = re.sub('[^0-9]', '', id)
-    resp = requests.get('https://www.biocatalogue.org/services/'+id+'.json') 
-    end = resp.json()
-    res = end['service']['variants'][0]['resource']
-    count_end = 0
-    for endpoint in res:
-        count_end += 1
-    Services_Temp.tsvc_endpoints = count_end
-Services_Temp.session.commit()
-'''''''''''''''''''''''''''''''''''''''''
