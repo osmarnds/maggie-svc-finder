@@ -12,9 +12,9 @@ class Services_Final(Base):
 
     __tablename__ = 'services_final'
 
-    svc_id = Column(Integer, primary_key=True, autoincrement=True)
+    svc_id = Column(Integer, Sequence('svc_id_seq'), primary_key=True, unique=True)
     svc_name = Column(String(500))
-    svc_entrypoint = Column(String(500), primary_key=True)
+    svc_entrypoint = Column(String(500), primary_key=True, unique=True)
     svc_description = Column(String(9999))
     svc_endpoints = Column(Integer)
     svc_status = Column(String(500))
@@ -42,8 +42,8 @@ class Endpoints_Final(Base):
 
     __tablename__ = 'endpoints_final'
 
-    end_id = Column(Integer, primary_key=True, autoincrement=True)
-    svc_id = Column(Integer, ForeignKey(Services_Final.svc_id))
+    end_id = Column(Integer, Sequence('end_id_seq'), primary_key=True)
+    svc_id = Column(Integer) #ForeignKey('services_final.svc_id')
     end_name = Column(String(500))
     end_url = Column(String(500), primary_key=True)
     end_description = Column(String(9999))

@@ -11,9 +11,14 @@ svcs_final = Services_Final.query.all()
 
 ends_temp = Endpoints_Temp.query.all()
 
+#regs = Services_Final.query.count()
+regs = 0
+
 # Merge dss Serviços (Tempórário -> Final)
 for item in svcs_temp:
     record = Services_Final()
+    regs += 1
+    record.svc_id = regs
     record.svc_name = item.tsvc_name
     record.svc_entrypoint = item.tsvc_entrypoint
     record.svc_description = item.tsvc_description
