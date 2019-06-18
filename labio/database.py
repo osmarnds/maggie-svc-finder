@@ -27,10 +27,20 @@ def _connect():
 def get_metadata():
     '''Import all modules that define models here!
       Otherwise alembic won't be able to detect database changes automatically'''  
-    from models.models import Services_Final
-    from models.models import Services_Temp
-    from models.models import Endpoints_Final
-    from models.models import Endpoints_Temp
+    #from models.models import Services_Final
+    #from models.models import Services_Temp
+    #from models.models import Endpoints_Final
+    #from models.models import Endpoints_Temp
+    #from models.models import Log
+    #from models.models import Detail
+    from models.models import Services_List
+    from models.models import Service
+    from models.models import Endpoints_List
+    from models.models import Endpoint
+    from models.models import Tag
+    from models.models import Similar
+    from models.models import Logs
+    from models.models import Details
     return Base.metadata
 
 def _upgrade_db():

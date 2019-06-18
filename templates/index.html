@@ -1,0 +1,19 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Microblog</title>
+        {% else %}
+        <title>Welcome to Microblog</title>
+        {% endif %}
+    </head>
+    <style>
+        p.one {border-style: solid;}
+        div.two {border-style: solid;}
+    </style>
+    <body>
+        <h1>Services</h1>
+        {% for item in items %}
+        <div class="two"><p>{{ item }}</p></div>
+        {% endfor %}
+    </body>
+</html>
