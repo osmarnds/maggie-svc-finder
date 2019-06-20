@@ -132,14 +132,14 @@ CONTRACTIONS = {
     "you've": "you have"
 }
 
-def __decontract(self, phrase):
+def __decontract(phrase):
     """
         Eliminate the word contractions in the sentences
     """
     #print(phrase)
     dec_phrase = phrase #.replace("´", "'")
-    for key in self.CONTRACTIONS:
-        dec_phrase = dec_phrase.replace(key, self.CONTRACTIONS[key])
+    for key in CONTRACTIONS:
+        dec_phrase = dec_phrase.replace(key, CONTRACTIONS[key])
 
     return dec_phrase
 
