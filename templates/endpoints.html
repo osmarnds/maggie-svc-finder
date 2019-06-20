@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Services Logs</title>
+        <title>Endpoints List</title>
         <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -17,17 +17,27 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Label</th>
                 <th>Description</th>
+                <th>URL</th>
+                <th>Template</th>
+                <th>Parameters</th>
+                <th>Service</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for end in endps %}
             <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
+                <td>{{ end.id }}</td>
+                <td>{{ end.name }}</td>
+                <td>{{ end.label }}</td>
+                <td>{{ end.description }}</td>
+                <td>{{ end.url }}</td>
+                <td>{{ end.template }}</td>
+                <td>{{ end.parameters }}</td>
+                <td>{{ end.service_name }}</td>
             </tr>
-            {% endfor %}    
+            {% endfor %}   
         </tbody>
         </table>
     </body>

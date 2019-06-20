@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Services Logs</title>
+        <title>Services List</title>
         <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -18,16 +18,22 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Entrypoint</th>
+                <th>Base_URL</th>
+                <th>Documentation_URL</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for svc in svcs %}
             <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
+                <td>{{ svc.id }}</td>
+                <td>{{ svc.name }}</td>
+                <td>{{ svc.description }}</td>
+                <td>{{ svc.entrypoint }}</td>
+                <td>{{ svc.base_url }}</td>
+                <td>{{ svc.doc_url }}</td>
             </tr>
-            {% endfor %}    
+            {% endfor %}   
         </tbody>
         </table>
     </body>

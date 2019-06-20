@@ -11,7 +11,6 @@ from labio.NPParser import NPExtractor
 
 labio.db.init()
 
-
 class SurveyProcessor():
     """
         Class to interface with SurveyAPI and process the survey data
@@ -165,11 +164,12 @@ def build_open_ended_data():
             results = np_extractor.extract()
             for word in results:
                 if word not in PUNCTUATION:
-                   log.detail_id = line['id']
-                   log.detail_name = line['name']
-                   #log.detail_description = line['description']
-                   log.merge()
-                   log.session.commit
+                    log.detail_id = line['id']
+                    log.detail_name = line['name']
+                    log.detail_description = line['description']
+                    log.log_id = line['id']
+                    log.merge()
+                    log.session.commit
     except:
         svc = None
         print(traceback.format_exc())
