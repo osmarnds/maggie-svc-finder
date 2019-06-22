@@ -41,6 +41,7 @@ def get_metadata():
     from models.models import Similar
     from models.models import Logs
     from models.models import Details
+    from models.models import Filters
     return Base.metadata
 
 def _upgrade_db():

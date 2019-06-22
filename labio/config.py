@@ -11,7 +11,7 @@ from labio.utils import decode
 class AppConfig():
     '''Loads configuration from PCF, or from app.dev.config when running outside PCF'''
 
-    DB_SERVER = 'sqlite:///localdb_novo.db'
+    DB_SERVER = 'sqlite:///localdb.db'
     #DB_SERVER = 'mysql+mysqlconnector://root:root@localhost/localdb'
     #DB_SERVER = 'mysql+pymysql://root:root@localhost/localdb'    
 

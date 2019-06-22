@@ -4,12 +4,16 @@ from models.models import Similar
 from models.models import Tag
 from models.models import Logs
 from models.models import Details
+from models.models import Filters
 import labio, nltk, requests, re, flask, time, traceback, textblob
 from bs4 import BeautifulSoup
 from nltk import word_tokenize, sent_tokenize
 from labio.NPParser import NPExtractor
 
 labio.db.init()
+
+regs = Filters.query.count()
+
 
 PUNCTUATION = ['.', ',', ':', '-', '?', '!', '%']
 CONTRACTIONS = {
@@ -144,31 +148,26 @@ def __decontract(phrase):
     return dec_phrase
 
 
-log = Details()
-
-
 def build_open_ended_data():
     try:
         svc = Service.query.all()
         line_count = 0
         for line in svc:
             line_count += 1
-
             d_line = __decontract(line.description.lower())
-
             np_extractor = NPExtractor(d_line)
             results = np_extractor.extract()
             for word in results:
                 if word not in PUNCTUATION:
-                    log.detail_id = line.id
-                    log.detail_name = line.name
-                    log.detail_description = line.description
-                    log.log_id = line.id
-                    log.merge()
-                    log.session.commit
+                    fil = Filters()
+                    fil.description = word
+                    fil.service_id = line.id
+                    fil.merge()
+                    fil.session.commit()
     except:
         svc = None
         print(traceback.format_exc())
     return svc
+    
+build_open_ended_data()
 
-print(build_open_ended_data())

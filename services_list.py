@@ -30,7 +30,5 @@ for x in range(1, pages):
         id = re.sub('[^0-9]', '', id)
         svc_record.id = id
         svc_record.merge()
-        detail = Details()
-        detail.detail_id = detail.query.count()+1
-        detail.detail_name = 'added service'+svc_record.name
+        svc_record.session.commit()
 svc_record.session.commit()
