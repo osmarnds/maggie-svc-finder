@@ -11,21 +11,25 @@
         </script>
     </head>
     <body>
-        <b><a href="{{ url_for('index')}}">LOGS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('services')}}">SERVICES</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('endpoints')}}">ENDPOINTS</a></b><br><br>
+        <b><a href="{{ url_for('index')}}">LOGS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('services')}}">SERVICES</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('endpoints')}}">ENDPOINTS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('filters')}}">FILTERS</a></b><br><br>
         <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Updated</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for log in logs %}
             <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
+                <td><a href="{{ url_for('details')}}">{{ log.log_id }}</a></td>
+                <td><a href="{{ url_for('details')}}">{{ log.log_name }}</a></td>
+                <td>{{ log.log_status }}</td>
+                <td>{{ log.time_created }}</td>
+                <td>{{ log.time_updated }}</td>
             </tr>
             {% endfor %}    
         </tbody>

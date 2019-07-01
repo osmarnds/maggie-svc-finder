@@ -22,8 +22,5 @@ for svc in Services_List.query.all():
     for variant in services['variants']:
         svc_record.doc_url = variant['documentation_url']
     svc_record.merge()
-    detail = Details()
-    detail.detail_id = detail.query.count()+1
-    detail.detail_name = 'added service'+svc_record.name
     svc_record.session.commit()
 svc_record.session.commit()

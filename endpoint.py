@@ -35,8 +35,5 @@ for end in Endpoints_List.query.all():
     end_record.service_id = end.service_id
     end_record.service_name = end.service_name
     end_record.merge()
-    detail = Details()
-    detail.detail_id = detail.query.count()+1
-    detail.detail_name = 'added service'+svc_record.name
     end_record.session.commit()
 end_record.session.commit()

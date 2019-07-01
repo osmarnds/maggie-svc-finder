@@ -30,8 +30,5 @@ for item in svcs:
         id_value = end_record.url
         end_record.id = re.sub('[^0-9]', '', id_value)
         end_record.merge()
-        detail = Details()
-        detail.detail_id = detail.query.count()+1
-        detail.detail_name = 'added service'+svc_record.name
         end_record.session.commit()
 end_record.session.commit()
